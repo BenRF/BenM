@@ -1,0 +1,65 @@
+=-=-=-=-=-=-=-=-=-=-=-=
+CLIENT RELATED MESSAGES
+=-=-=-=-=-=-=-=-=-=-=-=
+
+Clients first message to server, includes name and generate request to chat with Ben
+{
+    name: "...""
+}
+
+Servers response to clients connection request. Will either accept and start chat or decline if Ben can't be reached
+{
+    accepted: TRUE/FALSE,
+    reason: "Ben is currently not available"/"Ben could not be reached right now"/null
+}
+
+Client sending message to Ben / Server passing on message sent from Ben to client
+{
+    message: "...",
+    time: ...
+}
+
+=-=-=-=-=-=-=-=-=-=-
+BEN RELATED MESSAGES
+=-=-=-=-=-=-=-=-=-=-
+
+First message from client, proving identity as Ben
+{
+    name: Ben,
+    password: "..."
+}
+
+Server giving general information about current chats/requests, for approved connection or to update about new/removed clients
+{
+    purpose: "generalUpdate",
+    clientRequests: [...],
+    activeConversations: [...],
+    inActiveConversations: [...]
+}
+
+Ben responding to pending connection request from client
+{
+    purpose: "requestResponce"
+    clientId: ...,
+    verdict: TRUE/FALSE
+}
+
+Ben requesting all messages in a chat (active or inactive)
+{
+    purpose: "getChat",
+    clientId: ...
+}
+
+Server responding with chat messages
+{
+    purpose: "chatContent",
+    clientId: ...,
+    messages: [...]
+}
+
+Ben sending message to client / server passing on message from client
+{
+    purpose: "newMessage",
+    clientId: ...,
+    time: ...
+}
