@@ -12,6 +12,8 @@ let benConn = null;
 
 wss.on("connection", function connection(client) {
 
+    console.log("CLIENT JOINED");
+
     client.info = {
         id: clientId++,
         name: null,
@@ -22,26 +24,23 @@ wss.on("connection", function connection(client) {
     };
 
     client.on("message", function incoming(message) {
-        if (IsJsonString(message.data)) {
-            let msg = JSON.parse(message.data);
-
-            if (client.info.stage == null) {
-                client.info.name = msg.name;
-                if (msg.password == undefined) {
-                    client.info.stage = "waiting";
-                    updateBen();
-                } else if (msg.password == password) {
-                    client.info.isBen = true;
-                    client.info.stage = "approved";
-                    benConn = client;
-                }
-            } else if (client.info.isBen) {
-                //recieve contact and message replies from Ben
-            } else {
-                //recieve message replies from accepted clients
+        let msg = JSON.parse(message);
+        if (client.info.stage == null) {
+            client.info.name = msg.name;
+            if (msg.password == undefined) {
+                console.log(msg.name + " HAS JOINED");
+                client.info.stage = "waiting";
+                updateBen();
+            } else if (msg.password == password) {
+                console.log("THE BEN IS HERE")
+                client.info.isBen = true;
+                client.info.stage = "approved";
+                benConn = client;
             }
+        } else if (client.info.isBen) {
+            //recieve contact and message replies from Ben
         } else {
-            client.send("NOT VALID JSON");
+            //recieve message replies from accepted clients
         }
     });
 

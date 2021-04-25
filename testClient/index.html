@@ -4,48 +4,22 @@
         <link rel="stylesheet" href="style.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
-        <script src="script.js"></script>
+        <script src="clientScript.js"></script>
+        <script src="benScript.js"></script>
     </head>
     <body>
-
         <div id="container">
-            <div class="half-width">
+            <div id="Ben" class="half-width">
                 <h1 class="sectionTitle">Ben</h1>
-                <div class="slideShow-container">
-                    <div class="slide">
-                        <div>
-                            <button class="btn-1 middle">Connect</button>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="">
-                            <!-- Current requests here -->
-                        </div>
-                        <div class="">
-                            <!-- Chats here -->
-                        </div>
-                        <div class="">
-                            <!-- Currently selected chat messages here -->
-                        </div>
-                    </div>
+                <div class="container">
+                    <button class="large-btn btn-1 middle" onclick="connectBen()">Connect</button>
                 </div>
             </div>
-            <div class="half-width">
+            <div id="Fred" class="half-width">
                 <div class="half-height">
                     <h1 class="sectionTitle">Client1</h1>
-                    <div class="slideShow-container">
-                        <div class="slide">
-                            <button class="btn-1 middle">Connect</button>
-                        </div>
-                        <div class="slide">
-                            <!-- Waiting for Ben to accept or decline request -->
-                        </div>
-                        <div class="slide">
-                            <!-- Declined screen -->
-                        </div>
-                        <div class="slide">
-                            <!-- Chat with Ben -->
-                        </div>
+                    <div class="container">
+                        <button class="large-btn btn-1 middle" onclick="connectClient(0)">Connect</button>
                     </div>
                 </div>
                 <!-- Repeat for second client -->

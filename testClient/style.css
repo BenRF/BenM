@@ -31,6 +31,14 @@ h1.sectionTitle {
     margin-bottom: 0px;
 }
 
+.large-btn {
+    padding: 25px 80px;
+}
+
+.small-btn {
+    padding: 6px 20px;
+}
+
 .btn-1 {
     border: none;
 	font-family: inherit;
@@ -38,7 +46,6 @@ h1.sectionTitle {
 	color: inherit;
 	background: none;
 	cursor: pointer;
-	padding: 25px 80px;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 700;
@@ -49,6 +56,7 @@ h1.sectionTitle {
 	transition: all 0.3s;
 	border: 3px solid #0e83cd;
 	color: #0e83cd;
+    border-radius: 5px;
 }
 
 /* Button 1a */
@@ -56,4 +64,53 @@ h1.sectionTitle {
 .btn-1:active {
 	color: #fff;
 	background: #0e83cd;
+}
+
+.request-btn {
+    float: left;
+    margin-right: 15px;
+}
+
+.accept-btn {
+    border: 3px solid #66bb6a;
+    color: #66bb6a;
+}
+.accept-btn:hover,
+.accept-btn:active {
+    color: #fff;
+    background: #66bb6a;
+}
+
+.deny-btn {
+    border: 3px solid #e53935;
+    color: #e53935;
+}
+.deny-btn:hover,
+.deny-btn:active {
+    color: #fff;
+    background: #e53935;
+}
+
+h2.WaitingTitle {
+    font-family: 'Open Sans';
+    margin-top: 25%;
+    margin-left: 30%;
+}
+div.request-box {
+    height: 15%;
+    border-bottom: 1px solid black;
+}
+div.current-chat-box {
+    height: 35%;
+    border-bottom: 1px solid black;
+}
+div.chat-box {
+    height: 50%;
+}
+h1.request-title {
+    float: left;
+    margin-top: 5px;
+    margin-left: 15px;
+    margin-right: 10px;
+    font-size: 20px;
 }
