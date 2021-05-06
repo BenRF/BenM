@@ -10,8 +10,22 @@ function connectBen() {
         password: "pudding"
       }));
     });
+    conn.onmessage = newMessage;
+    conn.onclose = function(event) {
+        setBenToStage(0);
+        benConn = null;
+    };
     benConn = conn;
     setBenToStage(1);
+}
+
+function newMessage(message) {
+    let msg = JSON.parse(message.data);
+    if (msg.purpose === "generalUpdate") {
+        createRequests(msg.clientRequests);
+    } else {
+        console.log(msg);
+    }
 }
 
 function setBenToStage(stage) {
@@ -34,7 +48,7 @@ function respondToRequest(id, accepted) {
 }
 
 function createRequests(requests) {
-    let container = document.querySelector();
+    let container = document.querySelector("div#requests");
     let content = "";
     for (request of requests) {
         content += `

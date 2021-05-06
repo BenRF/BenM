@@ -9,8 +9,32 @@ function connectClient(id) {
         name: names[id]
       }));
     });
+    conn.onmessage = function(msg) {
+        recieveResponce(id,msg)
+    };
+    conn.onclose = function(event) {
+        setClientToStage(id, 0);
+        clientConns[id] = null;
+    };
     clientConns[id] = conn;
     setClientToStage(id,1);
+}
+
+function recieveResponce(id,message) {
+    let msg = JSON.parse(message.data);
+    if (msg.accepted) {
+        //client was accepted
+        setClientToStage(id,2);
+        clientConns[id].onmessage = function(msg) {
+            recieveMessage(id,msg);
+        }
+    } else {
+        setClientToStage(id,0);
+    }
+}
+
+function recieveMessage(id, message) {
+
 }
 
 function setClientToStage(id, stage) {
@@ -21,5 +45,7 @@ function setClientToStage(id, stage) {
     } else if (stage == 1) {
         //Client waiting to hear back from Ben
         container.innerHTML = "<h2 class='WaitingTitle'>Waiting on Ben</h2>";
+    } else if (stage == 2) {
+        //Client accepted and chat starting
     }
 }

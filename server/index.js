@@ -36,9 +36,16 @@ wss.on("connection", function connection(client) {
                 client.info.isBen = true;
                 client.info.stage = "approved";
                 benConn = client;
+                updateBen();
             }
         } else if (client.info.isBen) {
             //recieve contact and message replies from Ben
+            if (msg.purpose == "requestResponce") {
+                let client = getClientById(msg.clientId);
+                console.log(client.info.name + " was " + (msg.verdict ? "accepted":"denied"));
+                client.respond(msg.verdict);
+                updateBen();
+            }
         } else {
             //recieve message replies from accepted clients
         }
@@ -46,6 +53,19 @@ wss.on("connection", function connection(client) {
 
     client.sendMessage = function(message) {
         client.send(JSON.stringify(message));
+    }
+
+    client.respond = function(verdict) {
+        if (verdict) {
+            //client was approved
+        } else {
+            //client was denied
+            client.info.active = false;
+            client.info.stage = "denied";
+        }
+        client.sendMessage({
+            accepted: verdict
+        });
     }
 
     client.getSummary = function() {
@@ -99,13 +119,17 @@ function messageBen(message) {
     }
 }
 
-function messageClient(id, message) {
+function getClientById(id) {
     for (client of wss.clients) {
         if (!client.info.isBen && client.info.id == id) {
-            client.sendMessage(message);
-            break;
+            return client;
         }
     }
+    return null;
+}
+
+function messageClient(id, message) {
+    getClientById(id).sendMessage(message);
 }
 
 function IsJsonString(str) {
