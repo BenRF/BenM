@@ -1,8 +1,8 @@
 let clientConns = [null, null];
-let names = ["Fred", "Josh"];
+let names = ['Fred', 'Josh'];
 
 function connectClient(id) {
-    console.log("Connecting client " + id);
+    console.log('Connecting client ' + id);
     let conn = new WebSocket('ws://localhost:8080');
     conn.addEventListener('open', function (event) {
       conn.send(JSON.stringify({
@@ -38,7 +38,7 @@ function recieveMessage(id, message) {
 }
 
 function setClientToStage(id, stage) {
-    let container = document.querySelector("#" + names[id] + " div.container");
+    let container = document.querySelector('#' + names[id] + ' div.container');
     if (stage == 0) {
         //Client is not connected
         container.innerHTML = "<button class='large-btn btn-1 middle' onclick='connectClient(" + id + ")'>Connect</button>";
@@ -47,5 +47,12 @@ function setClientToStage(id, stage) {
         container.innerHTML = "<h2 class='WaitingTitle'>Waiting on Ben</h2>";
     } else if (stage == 2) {
         //Client accepted and chat starting
+        container.innerHTML = `
+            <div class='messageBox'></div>
+            <div class='inputBox'>
+                <input type='text' class='messageTextBox' placeholder='Message'/>
+                <button type='button' name='Send' class='btn-1 send-btn'>Send</button>
+            </div>
+        `;
     }
 }

@@ -58,6 +58,8 @@ wss.on("connection", function connection(client) {
     client.respond = function(verdict) {
         if (verdict) {
             //client was approved
+            client.info.active = true;
+            client.info.stage = "approved";
         } else {
             //client was denied
             client.info.active = false;
@@ -101,7 +103,7 @@ function updateBen() {
             let summary = client.getSummary();
             if (client.info.stage == "waiting") {
                 updateMsg.clientRequests.push(summary);
-            } else if (client.stage == "approved") {
+            } else if (client.info.stage == "approved") {
                 if (client.info.active) {
                     updateMsg.activeConversations.push(summary);
                 } else {

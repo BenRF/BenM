@@ -31,6 +31,11 @@ h1.sectionTitle {
     margin-bottom: 0px;
 }
 
+.send-btn {
+    width: 15%;
+    height: 35px;
+}
+
 .large-btn {
     padding: 25px 80px;
 }
@@ -100,6 +105,9 @@ div.request-box {
     height: 15%;
     border-bottom: 1px solid black;
 }
+div.request {
+    margin-bottom: 5px;
+}
 div.current-chat-box {
     height: 35%;
     border-bottom: 1px solid black;
@@ -113,4 +121,30 @@ h1.request-title {
     margin-left: 15px;
     margin-right: 10px;
     font-size: 20px;
+}
+
+div.messageBox {
+    width: 100%;
+    height: 80%;
+}
+div.inputBox {
+    width: 100%;
+    height: 10%;
+    background: #dbdbdb;
+}
+
+input.messageTextBox {
+  width: 75%;
+  height: 60%;
+  font-size: 25px;
+  margin-top: 10px;
+  margin-left: 15px;
+  background: transparent;
+}
+input.messageTextBox:focus {
+    outline: none;
+}
+
+div.chatOption:hover {
+    background: #d9d9d9;
 }

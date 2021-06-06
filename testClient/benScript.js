@@ -23,6 +23,7 @@ function newMessage(message) {
     let msg = JSON.parse(message.data);
     if (msg.purpose === "generalUpdate") {
         createRequests(msg.clientRequests);
+        createChats(msg.activeConversations);
     } else {
         console.log(msg);
     }
@@ -56,6 +57,23 @@ function createRequests(requests) {
                 <h1 class="request-title">` + request.name + `</h1>
                 <button type="button" class="small-btn btn-1 accept-btn request-btn" onclick="respondToRequest(` + request.id + `,true)">Accept</button>
                 <button type="button" class="small-btn btn-1 deny-btn request-btn" onclick="respondToRequest(` + request.id + `,false)">Decline</button>
+            </div>
+        `;
+    }
+    container.innerHTML = content;
+}
+
+function loadChat(id) {
+    console.log("LOADING CHAT FOR ID:" + id);
+}
+
+function createChats(chats) {
+    let container = document.querySelector("div#chats");
+    let content = "";
+    for (let chat of chats) {
+        content += `
+            <div class="request chatOption" onclick="loadChat(` + chat.id + `)">
+                <h1 class="request-title">` + chat.name + `</h1>
             </div>
         `;
     }
